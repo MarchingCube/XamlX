@@ -145,7 +145,7 @@ namespace XamlX.Ast
 
         public XamlConstantNode(IXamlLineInfo lineInfo, IXamlType type, object constant) : base(lineInfo)
         {
-            if (!constant.GetType().IsPrimitive)
+            if (!constant.GetType().IsPrimitive && constant.GetType() != typeof(string))
                 throw new ArgumentException($"Don't know how to emit {constant.GetType()} constant");
             Constant = constant;
             Type = new XamlAstClrTypeReference(lineInfo, type, false);
