@@ -218,6 +218,11 @@ namespace XamlX.Transform
                 }
             }
 
+            if (type.Name == "Classes")
+            {
+                return false;
+            }
+
             IXamlAstValueNode CreateInvariantCulture() =>
                 new XamlStaticOrTargetedReturnMethodCallNode(node,
                     cfg.WellKnownTypes.CultureInfo.Methods.First(x =>
