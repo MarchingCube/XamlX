@@ -50,6 +50,14 @@ namespace XamlX.Transform
                             continue;
                         rv.Add(m);
                     }
+
+                    foreach (var m in t.FindMethods(m => m.Name == "AddRange" && m.IsPublic && !m.IsStatic
+                                                         && (m.Parameters.Count == 1 || m.Parameters.Count == 2)))
+                    {
+                        if (rv.Any(em => em.Equals(m)))
+                            continue;
+                        rv.Add(m);
+                    }
                 }
                 
                 // First use methods from the type itself, then from base types, then from interfaces
